@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.aike.log">
+  package="com.aike.example.aike">
 
   <application
     android:allowBackup="true"
