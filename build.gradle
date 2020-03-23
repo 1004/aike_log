@@ -18,7 +18,9 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+      maven { url "https://dl.bintray.com/xky888xky/aike_dig"}
+      maven { url "https://dl.bintray.com/xky888xky/aike_httpserver"}
+      maven { url "https://dl.bintray.com/xky888xky/aike_cache"}
     }
 }
 

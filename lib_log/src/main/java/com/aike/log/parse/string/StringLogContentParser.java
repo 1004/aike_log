@@ -1,7 +1,7 @@
 package com.aike.log.parse.string;
 
+import android.text.TextUtils;
 import com.aike.log.parse.ILogContentParser;
-import com.aike.log.parse.json.JsonLogContentParser;
 
 /**
  * 创建时间: 2020/03/22 16:47 <br>
@@ -11,6 +11,10 @@ import com.aike.log.parse.json.JsonLogContentParser;
 public final class StringLogContentParser implements ILogContentParser{
   @Override
   public String parseConent(String msg) {
-    return null;
+    if (TextUtils.isEmpty(msg)){
+      return "";
+    }else {
+      return msg.trim();
+    }
   }
 }

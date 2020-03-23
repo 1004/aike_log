@@ -1,5 +1,7 @@
 package com.aike.log.platform;
 
+import com.aike.log.parse.ParseType;
+
 /**
  * 创建时间: 2020/03/22 16:24 <br>
  * 作者: xiekongying001 <br>
@@ -11,12 +13,17 @@ public interface IPrintPlatform {
    * @param msg
    * @return
    */
-  String parsePrintContent(String msg);
+  String parsePrintContent(@ParseType String contentType,String msg);
 
   /**
    * 输出
-   * @param level
-   * @param msg
    */
-  void printLog(int level,String tag,String msg);
+  void printLog(int level, @ParseType String contentType, String tag, String msg);
+
+  /**
+   * 获取有效Tag
+   * @param tag
+   * @return
+   */
+  String getTag(String tag);
 }
