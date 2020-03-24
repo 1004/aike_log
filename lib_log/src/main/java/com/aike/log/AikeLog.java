@@ -1,11 +1,13 @@
 package com.aike.log;
 
+import android.text.TextUtils;
 import com.aike.dig.DigApiClient;
 import com.aike.log.bean.AikeLogParams;
 import com.aike.log.config.AikeLogConfig;
 import com.aike.log.parse.ParseType;
 import com.aike.log.platform.PrintLogManager;
 import com.aike.log.platform.PrintPlatformType;
+import com.aike.log.utils.AikeLogUtils;
 
 /**
  * 创建时间: 2020/03/22 16:21 <br>
@@ -29,19 +31,32 @@ public class AikeLog {
   }
 
   public static void printLog(int level,String msg){
-    printLog(level,null,msg);
+    PrintLogManager.getInstance().printLog(PrintPlatformType.LOGTYPE,ParseType.STRINGTYPE,level,null,msg);
   }
 
   public static void printLog(int level,String tag,String msg){
-    printLog(level,PrintPlatformType.LOGTYPE,tag,msg);
+    PrintLogManager.getInstance().printLog(PrintPlatformType.LOGTYPE,ParseType.STRINGTYPE,level,tag,msg);
   }
 
   public static void printLog(int level,@PrintPlatformType String platform, String tag,String msg){
-    printLog(level,platform,ParseType.STRINGTYPE,tag,msg);
+    PrintLogManager.getInstance().printLog(platform,ParseType.STRINGTYPE,level,tag,msg);
   }
 
   public static void printLog(int level,@PrintPlatformType String platform, @ParseType String type, String tag,String msg){
     PrintLogManager.getInstance().printLog(platform,type,level,tag,msg);
+  }
+
+  public static void printThreowableLog(int level,@PrintPlatformType String platform,String tag,String msg,Throwable ex){
+    String errorMsg="";
+    if (ex != null){
+      errorMsg = ex.toString();
+    }
+    String statckTrace = AikeLogUtils.getStatckTrace();
+    errorMsg+=statckTrace;
+    if (!TextUtils.isEmpty(errorMsg)){
+      msg+="\n"+errorMsg;
+    }
+    PrintLogManager.getInstance().printLog(platform,ParseType.STRINGTYPE,level,tag,msg);
   }
 
 }

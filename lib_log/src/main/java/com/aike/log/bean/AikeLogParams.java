@@ -9,18 +9,16 @@ import android.app.Application;
  */
 public class AikeLogParams {
   private String globalTag;//全局Tag
-  private Application hostApplication;//毕传，没有插件化，app的上下文，否则为宿主上下文
   private Application pluginApplication;//毕传，没有插件化，app的上下文，否则为插件上下文
   private boolean isShowLog;//毕传
   private boolean isDebug;
   private boolean isCanPushLog;
   private String  pushUrl;//毕传：dig上传地址
 
-  public AikeLogParams(String globalTag, Application hostApplication,
+  public AikeLogParams(String globalTag,
       Application pluginApplication, boolean isShowLog, boolean isCanPushLog,
       String pushUrl,boolean isDebug) {
     this.globalTag = globalTag;
-    this.hostApplication = hostApplication;
     this.pluginApplication = pluginApplication;
     this.isShowLog = isShowLog;
     this.isCanPushLog = isCanPushLog;
@@ -30,10 +28,6 @@ public class AikeLogParams {
 
   public String getGlobalTag() {
     return globalTag;
-  }
-
-  public Application getHostApplication() {
-    return hostApplication;
   }
 
   public Application getPluginApplication() {
@@ -57,7 +51,6 @@ public class AikeLogParams {
 
   public static class Builder{
     private String globalTag;//毕传，没有插件化，可以写app名字
-    private Application hostApplication;//毕传，没有插件化，app的上下文，否则为宿主上下文
     private Application pluginApplication;//毕传，没有插件化，app的上下文，否则为插件上下文
     private boolean isShowLog;//毕传
     private boolean isCanPushLog;
@@ -79,11 +72,6 @@ public class AikeLogParams {
       return this;
     }
 
-    public Builder hostApplication(Application hostApplication){
-      this.hostApplication=hostApplication;
-      return this;
-    }
-
     public Builder isShowLog(boolean isShowLog){
       this.isShowLog=isShowLog;
       return this;
@@ -99,7 +87,7 @@ public class AikeLogParams {
     }
 
     public AikeLogParams build(){
-      return new AikeLogParams(globalTag,hostApplication,pluginApplication,isShowLog,isCanPushLog,pushUrl,isDebug);
+      return new AikeLogParams(globalTag,pluginApplication,isShowLog,isCanPushLog,pushUrl,isDebug);
     }
   }
 }

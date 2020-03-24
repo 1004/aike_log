@@ -7,7 +7,7 @@ package com.aike.log.config;
  */
 public class AikeLogConfig {
   public static final String LINE_SEPARATOR = System.getProperty("line.separator");
-  public static final int STACK_TRACE_INDEX_5 = 5;
+  public static final int STACK_TRACE_INDEX_5 = 4;
 
   public static boolean isShowLog=true;
   public static boolean isCanPushLog=true;

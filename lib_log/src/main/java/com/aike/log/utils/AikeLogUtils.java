@@ -3,6 +3,8 @@ package com.aike.log.utils;
 import android.text.TextUtils;
 import android.util.Log;
 import com.aike.log.bean.LogHeaderInfo;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 /**
  * 创建时间: 2020/03/23 14:35 <br>
@@ -14,7 +16,8 @@ public class AikeLogUtils {
 
   public static LogHeaderInfo getLogHeaderInfo(int stackTraceIndex){
     LogHeaderInfo headerInfo = new LogHeaderInfo();
-    StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+    StackTraceElement[] stackTrace = new Throwable().getStackTrace();
+
     if (stackTraceIndex>=stackTrace.length){
       return headerInfo;
     }
@@ -37,6 +40,28 @@ public class AikeLogUtils {
     headerInfo.methodName=methodName;
     return headerInfo;
   }
+
+  public static String getStatckTrace(){
+    Throwable tr = new Throwable();
+    StringWriter sw = new StringWriter();
+    PrintWriter pw = new PrintWriter(sw);
+    tr.printStackTrace(pw);
+    pw.flush();
+    String message = sw.toString();
+    String[] traceString = message.split("\\n\\t");
+    StringBuilder sb = new StringBuilder();
+    sb.append("\n");
+    String trace;
+    for(int var8 = 0; var8 < traceString.length; ++var8) {
+      trace = traceString[var8];
+      if (!trace.contains("at com.aike.log")) {
+        sb.append(trace).append("\n");
+      }
+    }
+    sb.append("\n");
+    return sb.toString();
+  }
+
 
   public static boolean isEmpty(String line) {
     return TextUtils.isEmpty(line) || line.equals("\n") || line.equals("\t") || TextUtils.isEmpty(line.trim());
