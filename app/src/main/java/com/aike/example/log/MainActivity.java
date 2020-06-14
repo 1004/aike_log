@@ -1,9 +1,11 @@
 package com.aike.example.log;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import com.aike.example.aike.R;
+import com.aike.fjh.log.LogActivity;
 import com.aike.log.AikeLog;
 import com.aike.log.bean.AikeLogParams;
 import com.aike.log.parse.ParseType;
@@ -30,7 +32,9 @@ public class MainActivity extends Activity {
   }
 
   public void commonLog(View view){
-    AikeLog.printLog(AikeLog.LEVEL_E, PrintPlatformType.LOGTYPE, ParseType.STRINGTYPE,TAG,LOG_MSG);
+    Intent intent = new Intent(this, LogActivity.class);
+    startActivity(intent);
+    //AikeLog.printLog(AikeLog.LEVEL_E, PrintPlatformType.LOGTYPE, ParseType.STRINGTYPE,TAG,LOG_MSG);
   }
 
   public void commonJson(View view){
