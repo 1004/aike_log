@@ -1,10 +1,12 @@
 package com.aike.log.platform.server;
 
+import android.text.TextUtils;
 import com.aike.dig.DigApiClient;
 import com.aike.dig.model.DigItemData;
 import com.aike.dig.send.DigSendManager;
 import com.aike.log.bean.LogHeaderInfo;
 import com.aike.log.config.AikeLogConfig;
+import com.aike.log.parse.ParseType;
 import com.aike.log.platform.APrintPlatform;
 import com.aike.log.utils.AikeLogUtils;
 import java.util.HashMap;
@@ -27,9 +29,12 @@ public class AikeServerLogPlatform extends APrintPlatform {
     LogHeaderInfo logHeaderInfo = AikeLogUtils.getLogHeaderInfo(AikeLogConfig.STACK_TRACE_INDEX_5);
     DigItemData itemData = new DigItemData();
     Map<String, String> ext = new HashMap<>();
+    if (TextUtils.equals(contentType, ParseType.JSONTYPE)){
+      itemData.setExtJsonMsg(content);
+    }else {
+      ext.put("msg",content);
+    }
     ext.put("tag",realTag);
-    ext.put("msg",content);
-    ext.put("msg",content);
     ext.put("className",logHeaderInfo.className);
     ext.put("methodName",logHeaderInfo.methodName);
     ext.put("lineNum",logHeaderInfo.lineNum+"");
