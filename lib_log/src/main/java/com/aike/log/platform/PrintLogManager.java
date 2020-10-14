@@ -1,6 +1,7 @@
 package com.aike.log.platform;
 
 import com.aike.log.parse.ParseType;
+import com.aike.log.platform.file.AikeFilePlatform;
 import com.aike.log.platform.log.AikeLogPlatform;
 import com.aike.log.platform.server.AikeServerLogPlatform;
 import com.aike.log.platform.ui.AikeUiLogPlatform;
@@ -30,6 +31,7 @@ public class PrintLogManager {
     printPlatformMap.put(PrintPlatformType.LOGTYPE,new AikeLogPlatform());
     printPlatformMap.put(PrintPlatformType.SERVERTYPE,new AikeServerLogPlatform());
     printPlatformMap.put(PrintPlatformType.UITYPE,new AikeUiLogPlatform());
+    printPlatformMap.put(PrintPlatformType.FILETYPE,new AikeFilePlatform());
   }
 
   public void printLog(@PrintPlatformType String platform,@ParseType String type, int level,String tag,String meg){

@@ -15,12 +15,11 @@ import com.aike.log.utils.AikeLogUtils;
  * 描述:
  */
 public class AikeLog {
-  public static final int LEVEL_V = 0x1;
-  public static final int LEVEL_D = 0x2;
-  public static final int LEVEL_I = 0x3;
-  public static final int LEVEL_W = 0x4;
-  public static final int LEVEL_E = 0x5;
-  public static final int LEVEL_A = 0x6;
+  public static final int LEVEL_V = android.util.Log.VERBOSE;
+  public static final int LEVEL_D = android.util.Log.DEBUG;
+  public static final int LEVEL_I = android.util.Log.INFO;
+  public static final int LEVEL_W = android.util.Log.WARN;
+  public static final int LEVEL_E = android.util.Log.ERROR;
 
   public static void initAikeLog(AikeLogParams aikeLogParams){
     DigApiClient.setDigDebug(aikeLogParams.isDebug());
@@ -28,6 +27,7 @@ public class AikeLog {
     AikeLogConfig.isCanPushLog=aikeLogParams.isCanPushLog();
     AikeLogConfig.isShowLog=aikeLogParams.isShowLog();
     AikeLogConfig.mGlobalTag=aikeLogParams.getGlobalTag();
+    AikeLogConfig.application = aikeLogParams.getPluginApplication();
   }
 
   public static void printLog(int level,String msg){

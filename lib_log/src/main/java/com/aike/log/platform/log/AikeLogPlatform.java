@@ -80,9 +80,6 @@ public class AikeLogPlatform extends APrintPlatform {
       case AikeLog.LEVEL_I:
         Log.i(tag, msg);
         break;
-      case AikeLog.LEVEL_A:
-        Log.wtf(tag, msg);
-        break;
     }
   }
 }

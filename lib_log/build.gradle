@@ -27,4 +27,9 @@ dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   compileOnly 'com.android.support:appcompat-v7:28.+'
   implementation 'com.aike.dig:dig:1.0.7'
+  //高速文件缓存
+  implementation 'com.github.pqpo:Log4a:1.4.2'
+  //压缩库
+  implementation 'com.github.luben:zstd-jni:1.4.5-5@aar'
+
 }

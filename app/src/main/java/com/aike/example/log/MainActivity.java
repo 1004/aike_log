@@ -79,7 +79,24 @@ public class MainActivity extends Activity {
     }
   }
 
+  public void FileLog(View view) {
+    AikeLog.printLog(AikeLog.LEVEL_I, PrintPlatformType.FILETYPE, ParseType.STRINGTYPE,TAG,LOG_MSG);
+  }
 
+  public void FileJson(View view) {
+    AikeLog.printLog(AikeLog.LEVEL_I, PrintPlatformType.FILETYPE, ParseType.JSONTYPE,TAG,JSON);
+  }
 
+  public void FileXml(View view) {
+    AikeLog.printLog(AikeLog.LEVEL_I, PrintPlatformType.FILETYPE, ParseType.XMLTYPE,TAG,XML);
+  }
 
+  public void threableFileTest(View view) {
+    try {
+      String test = null;
+      String i=test.toString();
+    }catch (Throwable throwable){
+      AikeLog.printThreowableLog(AikeLog.LEVEL_E, PrintPlatformType.FILETYPE,TAG,"这个位置出错了",throwable);
+    }
+  }
 }

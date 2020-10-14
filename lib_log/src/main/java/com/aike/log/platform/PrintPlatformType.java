@@ -10,9 +10,10 @@ import java.lang.annotation.RetentionPolicy;
  * 描述:
  */
 @Retention(RetentionPolicy.SOURCE)
-@StringDef({ PrintPlatformType.UITYPE, PrintPlatformType.LOGTYPE, PrintPlatformType.SERVERTYPE})
+@StringDef({ PrintPlatformType.UITYPE, PrintPlatformType.LOGTYPE, PrintPlatformType.SERVERTYPE,PrintPlatformType.FILETYPE})
 public @interface PrintPlatformType {
   String UITYPE="uitype";
   String LOGTYPE="logtype";
   String SERVERTYPE="servertype";
+  String FILETYPE="filetpye";
 }
