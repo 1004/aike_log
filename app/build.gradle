@@ -31,5 +31,5 @@ dependencies {
 //  implementation 'com.aike.log:log:1.0.0'
   implementation project(':lib_log')
   implementation 'com.aike.httpserver:httpserver:1.0.1'
-  implementation 'com.aike.cache:cache:1.0.4'
+  implementation 'com.aike.cache:cache:1.0.1'
 }
