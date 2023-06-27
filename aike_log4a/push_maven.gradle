@@ -1,0 +1,76 @@
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'org.jetbrains.dokka-android'
+apply plugin: 'maven'
+
+Properties properties = new Properties()
+File localPropertiesFile = rootProject.file("local.properties");
+if (localPropertiesFile.exists()) {
+  properties.load(localPropertiesFile.newDataInputStream())
+}
+
+File projectPropertiesFile = project.file("project.properties")
+if (projectPropertiesFile.exists()) {
+  properties.load(projectPropertiesFile.newDataInputStream())
+}
+
+def projectName = properties.getProperty("project.name")
+def projectGroupId = properties.getProperty("project.groupId")
+def projectArtifactId = properties.getProperty("project.artifactId")
+def projectVersionName = properties.getProperty("project.versionName")
+def projectDesc = properties.getProperty("project.desc")
+def projectPackaging = properties.getProperty("project.packaging")
+
+
+
+
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+def NEXUS_URL = properties.getProperty('NEXUS_URL')
+def NEXUS_USER = properties.getProperty('NEXUS_USER')
+def NEXUS_PWD = properties.getProperty('NEXUS_PWD')
+
+uploadArchives {
+  repositories {
+    mavenDeployer {
+      repository(url: NEXUS_URL) {
+        authentication(userName: NEXUS_USER, password: NEXUS_PWD)
+      }
+      pom.project {
+        name projectName
+        version projectVersionName
+        artifactId projectArtifactId
+        groupId projectGroupId
+        packaging projectPackaging
+        description projectDesc
+      }
+    }
+  }
+}
+
+task generateSourcesJar(type: Jar) {
+  group = 'jar'
+  from android.sourceSets.main.java.srcDirs
+  classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+  source = android.sourceSets.main.java.srcDirs
+  classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+//kotlin 支持
+
+//task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+//  outputFormat = "javadoc"
+//  outputDirectory = javadoc.destinationDir
+//}
+//
+//task generateJavadoc(type: Jar, dependsOn: dokkaJavadoc) {
+//  group = 'jar'
+//  classifier = 'javadoc'
+//  from javadoc.destinationDir
+//}
+
+artifacts {
+  //  archives generateJavadoc
+  archives generateSourcesJar
+}

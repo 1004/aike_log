@@ -2,7 +2,7 @@ package com.aike.fjh.log;
 
 import android.app.Activity;
 import android.os.Bundle;
-import com.aike.example.aike.R;
+import com.aike.example.aike.log.R;
 
 /**
  * 创建时间: 2020/04/28 11:55 <br>

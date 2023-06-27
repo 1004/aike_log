@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import com.aike.example.aike.R;
+import com.aike.example.aike.log.R;
 import com.aike.fjh.log.LogActivity;
 import com.aike.log.AikeLog;
 import com.aike.log.bean.AikeLogParams;

@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     buildToolsVersion "28.0.3"
     defaultConfig {
-        applicationId "com.aike.example.aike"
+        applicationId "com.aike.example.aike.log"
         minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
